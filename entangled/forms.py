@@ -69,7 +69,7 @@ class EntangledFormMetaclass(ModelFormMetaclass):
                 # This includes the case where no Meta.fields is specified
                 # Explicitly list the entangled and untangled fields - remove excluded fields
 
-                fields_to_delete = set(getattr(attrs["Meta"], "exclude", []))
+                fields_to_delete = set(getattr(attrs["Meta"], "exclude", None) or [])
                 for field_name in entangled_fields.keys():
                     entangled_fields[field_name] = [
                         field for field in entangled_fields[field_name] if field not in fields_to_delete
